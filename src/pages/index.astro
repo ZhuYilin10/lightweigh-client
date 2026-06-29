@@ -1,0 +1,186 @@
+---
+import "../styles/global.css";
+
+const screenshots = [
+  {
+    title: "今天",
+    text: "先看当前这一站，也看见今天的节奏。",
+    src: "/screenshots/today-dashboard.png",
+    alt: "轻量今天页，展示当前站进度和晨重、日间体重等记录。"
+  },
+  {
+    title: "这一站",
+    text: "目标、出发、当前进展，都收在一张路线纸上。",
+    src: "/screenshots/station-detail.png",
+    alt: "轻量这一站详情页，展示当前奖励和目标进度。"
+  },
+  {
+    title: "回顾",
+    text: "趋势帮你看清一段时间里的身体节奏。",
+    src: "/screenshots/records-trend.png",
+    alt: "轻量回顾页，展示体重趋势和时间区间。"
+  },
+  {
+    title: "票根",
+    text: "抵达时，把这一刻轻轻收好。",
+    src: "/screenshots/arrival-ticket.png",
+    alt: "轻量抵达票根，记录达成目标和奖励。"
+  }
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "写下目标",
+    text: "先确认这一站想去哪里，让路线从一个清楚的起点开始。"
+  },
+  {
+    number: "02",
+    title: "写下抵达礼",
+    text: "一顿饭、一趟旅行、一套写真，都是认真为自己准备的奖励。"
+  },
+  {
+    number: "03",
+    title: "收下一张票根",
+    text: "抵达时，把这一次进展保存下来，慢慢看见自己走过的路。"
+  }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="轻量是一款用正向激励陪你记录身体变化的体重管理 App。把目标写成路线，把奖励收成票根。"
+    />
+    <title>轻量</title>
+  </head>
+  <body>
+    <main>
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="paper-grain" aria-hidden="true"></div>
+        <header class="site-nav" aria-label="主导航">
+          <a class="brand" href="#top" aria-label="轻量首页">
+            <img class="brand-mark" src="/app-icon.png" alt="" aria-hidden="true" />
+            <span>轻量</span>
+          </a>
+        </header>
+
+        <div class="hero-stage">
+          <div class="hero-copy">
+            <p class="eyebrow">正向激励 · 路线手账</p>
+            <h1 id="hero-title">目标不必只是一串数字。</h1>
+            <p class="hero-lede">把它写成这一站，也写下真正想抵达的奖励。轻量会陪你慢慢靠近，再把抵达的时刻收好。</p>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <div class="icon-landscape">
+              <img src="/app-icon.png" alt="" />
+            </div>
+            <div class="soft-ticket">
+              <span>NO.001</span>
+              <strong>这一站</strong>
+            </div>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#route">往下看路线</a>
+      </section>
+
+      <section class="quiet-bridge" aria-label="轻量的产品语气">
+        <p>不是每一步都轻松，但每一次认真靠近，都值得被温柔地看见。</p>
+      </section>
+
+      <section class="route-reveal section" id="route" aria-labelledby="route-title">
+        <div class="section-copy">
+          <p class="eyebrow">路线</p>
+          <h2 id="route-title">不是一串数字，是一段路。</h2>
+          <p>
+            轻量把目标拆成当前这一站。抵达了，就收好这一站，再慢慢走向下一站。
+          </p>
+        </div>
+        <figure class="phone-shot hero-shot">
+          <img
+            src="/screenshots/route-overview.png"
+            alt="轻量路线页，展示当前站、此站有礼和已经收好的站点。"
+            loading="eager"
+          />
+          <figcaption>当前站、已收好的站点和前方的小路。</figcaption>
+        </figure>
+      </section>
+
+      <section class="steps section" aria-labelledby="steps-title">
+        <div class="section-heading">
+          <p class="eyebrow">怎么开始</p>
+          <h2 id="steps-title">写下来，然后慢慢靠近。</h2>
+        </div>
+        <div class="step-grid">
+          {
+            steps.map((step) => (
+              <article class="step-card">
+                <span>{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="screens section" id="screens" aria-labelledby="screens-title">
+        <div class="section-heading narrow">
+          <h2 id="screens-title">每天、这一站、回顾和票根。</h2>
+          <p>体重记录在这里不是压力来源，而是帮路线看清楚节奏的证据。</p>
+        </div>
+        <div class="screenshot-grid">
+          {
+            screenshots.map((shot) => (
+              <article class="screenshot-card">
+                <figure class="phone-shot">
+                  <img src={shot.src} alt={shot.alt} loading="lazy" />
+                </figure>
+                <div>
+                  <h3>{shot.title}</h3>
+                  <p>{shot.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="records section" aria-labelledby="records-title">
+        <div class="records-copy">
+          <p class="eyebrow">温柔记录</p>
+          <h2 id="records-title">记录身体变化，但不被数字追着跑。</h2>
+          <p>
+            你可以记录晨重、日间体重、晚重和日波动，也可以连接 Apple Health。
+            趋势只是帮你看见一段时间里的节奏，不放大每一次波动。
+          </p>
+        </div>
+        <figure class="ticket-preview">
+          <img
+            src="/screenshots/first-station.png"
+            alt="轻量第一站设置页，展示第一个小心愿、起点、目标和抵达礼。"
+            loading="lazy"
+          />
+          <figcaption>从第一个小心愿开始。</figcaption>
+        </figure>
+      </section>
+
+      <section class="footer-cta section" aria-labelledby="closing-title">
+        <p class="eyebrow">从这一站开始</p>
+        <h2 id="closing-title">写下目标。写下抵达礼。然后把每一次小小的进展，慢慢收好。</h2>
+        <p>祝你得偿所愿。祝你闪闪发光。</p>
+        <footer>
+          <span>轻量</span>
+          <a href="/privacy">隐私政策</a>
+          <a href="/support">支持</a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

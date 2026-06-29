@@ -1,0 +1,105 @@
+---
+import "../styles/global.css";
+
+const supportSections = [
+  {
+    id: "include",
+    title: "反馈时请附带",
+    items: [
+      "设备型号与 iOS 版本",
+      "轻量版本号或 TestFlight 构建号",
+      "问题发生前后的操作步骤",
+      "截图、录屏，或你愿意分享的诊断信息"
+    ]
+  },
+  {
+    id: "records",
+    title: "记录与趋势",
+    items: [
+      "晨重、日间体重、晚重或日波动显示异常",
+      "趋势、回顾或时间区间看起来不符合预期",
+      "Apple Health 授权、同步或历史记录缺失"
+    ]
+  },
+  {
+    id: "route",
+    title: "路线与票根",
+    items: [
+      "当前这一站、目标或抵达礼无法保存",
+      "抵达票根、已完成路线或回顾显示异常",
+      "界面排版、截图展示或文字表达让你感到困惑"
+    ]
+  }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="轻量支持页面。遇到记录、路线、票根或 Apple Health 同步问题时，可以通过邮件联系。" />
+    <title>支持 | 轻量</title>
+  </head>
+  <body>
+    <main>
+      <header class="site-nav policy-nav" aria-label="支持页导航">
+        <a class="brand" href="/" aria-label="轻量首页">
+          <img class="brand-mark" src="/app-icon.png" alt="" aria-hidden="true" />
+          <span>轻量</span>
+        </a>
+        <nav>
+          <a href="/">首页</a>
+          <a href="/privacy">隐私政策</a>
+        </nav>
+      </header>
+
+      <article class="policy-page support-page" aria-labelledby="support-title">
+        <section class="policy-hero support-hero">
+          <p class="eyebrow">Support</p>
+          <h1 id="support-title">需要帮忙时，从这里开始。</h1>
+          <p class="policy-intro">
+            如果轻量在记录、路线、票根、趋势回顾或 Apple Health 同步上遇到问题，可以通过邮件联系我。
+          </p>
+          <section class="support-contact" aria-labelledby="support-contact-title">
+            <h2 id="support-contact-title">联系支持</h2>
+            <div class="support-actions">
+              <a class="support-action is-primary" href="mailto:zylald10@gmail.com">发送邮件</a>
+              <a class="support-action" href="/privacy">查看隐私政策</a>
+            </div>
+            <p>邮件是主要支持入口。请尽量附上设备型号、iOS 版本、轻量版本、复现步骤，以及截图或可分享的诊断信息。</p>
+          </section>
+        </section>
+
+        <div class="support-content">
+          <div class="support-grid">
+            {
+              supportSections.map((section) => (
+                <section class="support-section" aria-labelledby={`support-${section.id}`}>
+                  <h2 id={`support-${section.id}`}>{section.title}</h2>
+                  <ul>
+                    {section.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </section>
+              ))
+            }
+          </div>
+
+          <section class="support-related" aria-labelledby="support-related-title">
+            <h2 id="support-related-title">相关入口</h2>
+            <div class="support-related-links">
+              <a class="support-related-link" href="/">
+                <strong>首页</strong>
+                <span>回到轻量的网站首页，查看路线、记录和票根体验。</span>
+              </a>
+              <a class="support-related-link" href="/privacy">
+                <strong>隐私政策</strong>
+                <span>查看轻量如何处理本地记录和 Apple Health 数据。</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

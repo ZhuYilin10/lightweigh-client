@@ -1,0 +1,114 @@
+---
+import "../styles/global.css";
+
+const sections = [
+  {
+    id: "data",
+    title: "我们处理哪些信息",
+    paragraphs: [
+      "轻量用于记录体重、阶段目标、路线进展、抵达礼、票根和趋势变化。你在应用中填写的晨重、日间体重、晚重、备注、目标与奖励内容，主要保存在你的设备本地。",
+      "如果你选择连接 Apple Health，轻量会在获得系统授权后读取或同步与你的体重记录相关的数据。你可以随时在 iOS 的健康权限设置中调整授权。"
+    ]
+  },
+  {
+    id: "use",
+    title: "我们如何使用这些信息",
+    paragraphs: [
+      "这些信息用于展示当前这一站、计算路线进展、生成回顾趋势、保存抵达票根，并帮助你看见一段时间里的身体节奏。",
+      "轻量不会提供由我们运营的账号系统，也不会把你的路线、奖励、票根或体重记录上传到我们自己的服务器。"
+    ]
+  },
+  {
+    id: "health",
+    title: "Apple Health",
+    paragraphs: [
+      "当你开启 Apple Health 同步时，轻量只会在授权范围内访问体重相关数据，用于补全记录和展示趋势。",
+      "Apple Health 数据受 iOS 系统权限控制。关闭授权后，轻量将不再继续从 Apple Health 读取新的体重数据。"
+    ]
+  },
+  {
+    id: "third-party",
+    title: "第三方服务",
+    paragraphs: [
+      "轻量可能使用 Apple 提供的系统能力，例如 Apple Health、系统备份、崩溃诊断或 App Store 分发。这些能力由 Apple 按其条款与隐私政策处理。",
+      "除非你主动通过系统分享、截图或导出信息，否则轻量不会把你的本地记录发送给其他第三方服务。"
+    ]
+  },
+  {
+    id: "retention",
+    title: "数据保存与删除",
+    paragraphs: [
+      "你的记录会保存在设备上，直到你在应用内删除相关内容，或通过 iOS 删除应用及其数据。",
+      "因为我们没有保存这些数据的服务器副本，通常无法代你恢复或删除设备本地数据。"
+    ]
+  },
+  {
+    id: "children",
+    title: "儿童隐私",
+    paragraphs: [
+      "轻量面向能够独立理解和管理身体记录的用户，不主动面向未满 14 周岁的儿童提供服务，也不会有意收集儿童个人信息。",
+      "如果你认为儿童在未取得监护人同意的情况下向我们提供了个人信息，请通过本页面末尾的联系方式告知我们。"
+    ]
+  },
+  {
+    id: "updates",
+    title: "政策更新",
+    paragraphs: [
+      "我们可能会随着产品功能、系统权限或法律要求更新本政策。更新后，会在本页面标注新的生效日期。"
+    ]
+  },
+  {
+    id: "contact",
+    title: "联系我们",
+    paragraphs: [
+      "如果你对本隐私政策或个人信息处理有任何问题，请联系 zylald10@gmail.com。"
+    ]
+  }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="轻量隐私政策，说明体重记录、路线、票根和 Apple Health 数据如何处理。" />
+    <title>隐私政策 | 轻量</title>
+  </head>
+  <body>
+    <main>
+      <header class="site-nav policy-nav" aria-label="隐私政策导航">
+        <a class="brand" href="/" aria-label="轻量首页">
+          <img class="brand-mark" src="/app-icon.png" alt="" aria-hidden="true" />
+          <span>轻量</span>
+        </a>
+        <nav>
+          <a href="/">首页</a>
+          <a href="/support">支持</a>
+        </nav>
+      </header>
+
+      <article class="policy-page" aria-labelledby="policy-title">
+        <section class="policy-hero" data-brand="轻量">
+          <p class="eyebrow">Privacy Policy</p>
+          <h1 id="policy-title">隐私政策</h1>
+          <p class="policy-effective-date">生效日期：2026 年 6 月 29 日</p>
+          <p class="policy-intro">
+            这份隐私政策说明轻量在提供体重记录、路线、抵达礼、票根、趋势回顾和 Apple Health 同步等功能时，如何处理与你有关的信息。
+          </p>
+        </section>
+
+        <div class="policy-content">
+          {
+            sections.map((section) => (
+              <section class="policy-section" aria-labelledby={`policy-${section.id}`}>
+                <h2 id={`policy-${section.id}`}>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ))
+          }
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
