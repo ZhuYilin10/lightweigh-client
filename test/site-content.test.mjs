@@ -7,6 +7,8 @@ const root = process.cwd();
 const indexPath = join(root, "src/pages/index.astro");
 const privacyPath = join(root, "src/pages/privacy.astro");
 const supportPath = join(root, "src/pages/support.astro");
+const packagePath = join(root, "package.json");
+const analyticsComponentPath = join(root, "src/components/VercelAnalytics.astro");
 const cssPath = join(root, "src/styles/global.css");
 const screenshotDir = join(root, "public/screenshots");
 
@@ -117,5 +119,22 @@ describe("轻量官网内容约束", () => {
     assert.match(privacySource, /Apple Health/);
     assert.match(supportSource, /需要帮忙/);
     assert.match(supportSource, /mailto:/);
+  });
+
+  it("includes Vercel Analytics on every public page", () => {
+    assert.ok(existsSync(analyticsComponentPath), "src/components/VercelAnalytics.astro should exist");
+
+    const packageJson = JSON.parse(readFileSync(packagePath, "utf8"));
+    assert.ok(packageJson.dependencies?.["@vercel/analytics"], "@vercel/analytics should be a runtime dependency");
+
+    const analyticsSource = readFileSync(analyticsComponentPath, "utf8");
+    assert.match(analyticsSource, /@vercel\/analytics\/astro/);
+    assert.match(analyticsSource, /<Analytics\s*\/>/);
+
+    for (const pagePath of [indexPath, privacyPath, supportPath]) {
+      const source = readFileSync(pagePath, "utf8");
+      assert.match(source, /import VercelAnalytics from "\.\.\/components\/VercelAnalytics\.astro";/);
+      assert.match(source, /<VercelAnalytics\s*\/>/);
+    }
   });
 });
